@@ -1,8 +1,10 @@
 "use strict";
 const inputSearch = document.querySelector(".js-inputSearch");
 const foundMovies = document.querySelector(".js-foundMovies");
+const favoriteMovie = document.querySelector(".js-favoriteMovies");
 const btnSearch = document.querySelector(".js-btnSearch");
 const btnResetSearch = document.querySelector(".js-resetSearch");
+const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
 
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
@@ -14,12 +16,12 @@ function callFetch() {
     .then((json) => {
       console.log(json);
       filmList = json.data;
-      renderCard();
+      renderFilmList();
       listenerFilm();
     });
 }
 
-function renderCard() {
+function renderFilmList() {
   let html = "";
   filmList.forEach((item) => {
     html += `<li class="film-card js-filmCard" id=${item.mal_id}>
@@ -27,6 +29,16 @@ function renderCard() {
                 </li>`;
   });
   foundMovies.innerHTML = html;
+}
+function renderMyMovies() {
+  let html = "";
+  myMovies.forEach((item) => {
+    html += `<li class="favMovie-card js-filmCard" id=${item.mal_id}>
+            <h3 >${item.title}</h3>
+    
+                </li>`;
+  });
+  favoriteMovie.innerHTML = html;
 }
 
 function handleClickSearch(ev) {
@@ -38,10 +50,17 @@ function handleClickResetInput(ev) {
   inputSearch.value = "";
   foundMovies.innerHTML = "";
 }
+function removeMyMovies() {
+  myMovies = [];
+  favoriteMovie.innerHTML = "";
+}
 function handleClickFilm(event) {
   const clickedMoovie = parseInt(event.currentTarget.id);
   const match = filmList.find((item) => item.mal_id === clickedMoovie);
-  myMovies.push(match);
+  if (!myMovies.includes(match)) {
+    myMovies.push(match);
+  }
+  renderMyMovies();
   console.log(myMovies);
 }
 
@@ -52,5 +71,12 @@ function listenerFilm() {
     li.addEventListener("click", handleClickFilm);
   }
 }
+/* function listenerXBtn() {
+  const xBtn = document.querySelectorAll(".js-xBtn");
+  for (const btn of xBtn) {
+    btn.addEventListener("click", handleClickXbtn);
+  }
+} */
 btnResetSearch.addEventListener("click", handleClickResetInput);
 btnSearch.addEventListener("click", handleClickSearch);
+btnRemoveMyMovies.addEventListener("click", removeMyMovies);

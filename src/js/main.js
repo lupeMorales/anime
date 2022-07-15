@@ -25,6 +25,7 @@ function renderFilmList() {
   let html = "";
   filmList.forEach((item) => {
     html += `<li class="film-card js-filmCard" id=${item.mal_id}>
+    <img src="${item.images.jpg.image_url}" />
             <h3 >${item.title}</h3>
                 </li>`;
   });
@@ -34,6 +35,7 @@ function renderMyMovies() {
   let html = "";
   myMovies.forEach((item) => {
     html += `<li class="favMovie-card js-filmCard" id=${item.mal_id}>
+    <img src="${item.images.jpg.image_url}" />
             <h3 >${item.title}</h3>
     
                 </li>`;

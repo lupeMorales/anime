@@ -1,2 +1,25 @@
-body {
+.page {
+  width: 100%;
+  height: max-content;
+  background-color: aqua;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1;
+}
+.film-container {
+  height: 500px;
+  border: 2px solid green;
+  display: grid;
+
+  &__search {
+    grid-template-columns: 1fr;
+    grid-template-columns: auto;
+  }
+  &__fav {
+    grid-template-columns: repeat (1fr);
+    grid-template-columns: auto;
+  }
 }

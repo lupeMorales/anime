@@ -5,7 +5,7 @@ const btnSearch = document.querySelector(".js-btnSearch");
 const btnResetSearch = document.querySelector(".js-resetSearch");
 
 let filmList = []; //array guarda resultado del fetch
-/* let favoriteMovies = []; */
+let myMovies = [];
 
 //funciones
 function callFetch() {
@@ -22,7 +22,7 @@ function callFetch() {
 function renderCard() {
   let html = "";
   filmList.forEach((item) => {
-    html += `<li class="film-card js-filmCard">
+    html += `<li class="film-card js-filmCard" id=${item.mal_id}>
             <h3 >${item.title}</h3>
                 </li>`;
   });
@@ -38,14 +38,19 @@ function handleClickResetInput(ev) {
   inputSearch.value = "";
   foundMovies.innerHTML = "";
 }
-
-function listenerFilm() {
-  const film = document.querySelectorAll(".js-filmCard");
-  for (const li of film) {
-    li.addEventListener("click", () => console.log("no misiela"));
-  }
+function handleClickFilm(event) {
+  const clickedMoovie = parseInt(event.currentTarget.id);
+  const match = filmList.find((item) => item.mal_id === clickedMoovie);
+  myMovies.push(match);
+  console.log(myMovies);
 }
 
 //eventos
+function listenerFilm() {
+  const film = document.querySelectorAll(".js-filmCard");
+  for (const li of film) {
+    li.addEventListener("click", handleClickFilm);
+  }
+}
 btnResetSearch.addEventListener("click", handleClickResetInput);
 btnSearch.addEventListener("click", handleClickSearch);

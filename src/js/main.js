@@ -36,7 +36,7 @@ function handleClickSearch(ev) {
 function handleClickResetInput(ev) {
   ev.preventDefault();
   inputSearch.value = "";
-  filmsSearched.innerHTML = "";
+  foundMovies.innerHTML = "";
 }
 
 function listenerFilm() {

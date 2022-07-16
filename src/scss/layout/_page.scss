@@ -1,12 +1,14 @@
 .page {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
   column-gap: 15px;
-  justify-content: space-between;
+  /*  display: flex;
+  flex-direction: row;
+  column-gap: 15px; */
   width: 100%;
   min-height: 60vh;
   height: max-content;
-  padding: 15px;
+  padding: 3%;
   background-color: rgb(57, 58, 58);
   &__film {
     min-height: 60vh;
@@ -22,17 +24,17 @@
   }
 
   &__fav-film {
-    min-height: 60autovh;
-
     height: max-content;
     border: solid 4px mediumorchid;
     border-radius: 25px;
+
     h2 {
       color: aliceblue;
       padding: 20px;
       font-size: 2rem;
       text-transform: uppercase;
     }
+
     button {
       width: 60px;
       height: 20px;
@@ -57,9 +59,10 @@
   img {
     width: 170px;
     height: 240px;
-    border: solid 2px cornsilk;
+    border: solid 6px cornsilk;
     border-radius: 15px 15px 0 0;
     object-fit: cover;
+    margin-bottom: 15px;
   }
   h3 {
     position: absolute;
@@ -70,5 +73,45 @@
     background-color: cornsilk;
     border-radius: 15px 15px 0 0;
     z-index: 999;
+  }
+}
+.favList {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  column-gap: 15px;
+  list-style: none;
+  padding: 10px;
+
+  li {
+    position: relative;
+    border: solid 4px red;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    height: 60px;
+
+    overflow: hidden;
+
+    img {
+      width: 55px;
+      height: 55px;
+      border: none;
+
+      object-fit: cover;
+    }
+    h3 {
+      position: absolute;
+      min-width: 175px;
+      width: 320px;
+      height: 55px;
+      top: 0px;
+      left: 50px;
+      font-size: 1.2rem;
+      padding: 5px;
+      border: solid 2px cornsilk;
+      background-color: cornsilk;
+    }
   }
 }

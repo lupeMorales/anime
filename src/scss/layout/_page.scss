@@ -1,25 +1,74 @@
 .page {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  justify-content: space-between;
   width: 100%;
+  min-height: 60vh;
   height: max-content;
-  background-color: aqua;
-}
-
-.wrapper {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1;
-}
-.film-container {
-  height: 500px;
-  border: 2px solid green;
-  display: grid;
-
-  &__search {
-    grid-template-columns: 1fr;
-    grid-template-columns: auto;
+  padding: 15px;
+  background-color: rgb(57, 58, 58);
+  &__film {
+    min-height: 60vh;
+    height: max-content;
+    border: solid 4px coral;
+    border-radius: 25px;
+    h2 {
+      color: aliceblue;
+      padding: 20px;
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
   }
-  &__fav {
-    grid-template-columns: repeat (1fr);
-    grid-template-columns: auto;
+
+  &__fav-film {
+    min-height: 60autovh;
+
+    height: max-content;
+    border: solid 4px mediumorchid;
+    border-radius: 25px;
+    h2 {
+      color: aliceblue;
+      padding: 20px;
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
+    button {
+      width: 60px;
+      height: 20px;
+      border: none;
+      background-color: grey;
+      border-radius: 15px;
+      margin: 10px 20px 10px;
+    }
+  }
+}
+.filmList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  column-gap: 15px;
+
+  li {
+    position: relative;
+  }
+
+  img {
+    width: 170px;
+    height: 240px;
+    border: solid 2px cornsilk;
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+  }
+  h3 {
+    position: absolute;
+    width: 170px;
+    height: 50px;
+    top: 190px;
+    border: solid 2px cornsilk;
+    background-color: cornsilk;
+    border-radius: 15px 15px 0 0;
+    z-index: 999;
   }
 }

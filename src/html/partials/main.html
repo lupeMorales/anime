@@ -1,12 +1,21 @@
 <main class="page">
-  <section class="film">
+  <section class="page__film">
     <h2>resultado búsqueda</h2>
-    <ul class="filmList js-foundMovies"></ul>
+    <div class="card-container"><ul class="filmList js-foundMovies"></ul></div>
   </section>
 
-  <section class="fav-film">
+  <section class="page__fav-film">
     <h2>mis favoritas</h2>
-    <ul class="favList js-favoriteMovies"></ul>
+    <div class="container">
+      <ul class="favList js-favoriteMovies">
+        <!-- <li class="favMovie-card js-filmCard" id=${item.mal_id}>
+        <img src="${item.images.jpg.image_url}" />
+                <h3 >${item.title}</h3>
+        
+                    </li>` -->
+      </ul>
+    </div>
+
     <button class="js-btnRemoveAll">reset all</button>
   </section>
 </main>

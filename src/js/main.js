@@ -9,7 +9,7 @@ const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 
-//funciones
+//***********funciones**********************
 
 function callFetch() {
   fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch.value}`)
@@ -18,7 +18,6 @@ function callFetch() {
       console.log(json);
       filmList = json.data;
       renderFilmList();
-      listenerFilm();
     });
 }
 
@@ -45,6 +44,7 @@ function renderFilmList() {
   });
 
   foundMovies.innerHTML = html;
+  listenerFilm();
 }
 
 function renderMyMovies() {
@@ -59,7 +59,7 @@ function renderMyMovies() {
   favoriteMovie.innerHTML = html;
 }
 
-function removeMyMovies() {
+function removeMyFavorites() {
   myMovies = [];
   favoriteMovie.innerHTML = "";
   localStorage.setItem("favoriteMovies", JSON.stringify(myMovies));
@@ -80,7 +80,7 @@ function loadMyFavorites() {
     renderMyMovies();
   }
 }
-
+// ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();
   callFetch();
@@ -108,7 +108,6 @@ function pressEnter(ev) {
     return false;
   }
 }
-//eventos
 function listenerFilm() {
   const film = document.querySelectorAll(".js-filmCard");
   for (const li of film) {
@@ -116,10 +115,11 @@ function listenerFilm() {
   }
 }
 
+//*********eventos************
 btnResetSearch.addEventListener("click", handleClickResetInput);
 btnSearch.addEventListener("click", handleClickSearch);
-btnRemoveMyMovies.addEventListener("click", removeMyMovies);
+btnRemoveMyMovies.addEventListener("click", removeMyFavorites);
 inputSearch.addEventListener("keydown", pressEnter);
 
-//lo que carga la web al abrir
+//*********on load*************
 loadMyFavorites();

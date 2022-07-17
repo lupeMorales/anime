@@ -7,7 +7,6 @@ const btnResetSearch = document.querySelector(".js-resetSearch");
 const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
 
 let filmList = []; //array guarda resultado del fetch
-
 let myMovies = [];
 
 //funciones
@@ -75,6 +74,7 @@ function loadMyFavorites() {
   const dataLocalStorage = JSON.parse(localStorage.getItem("favoriteMovies"));
 
   if (dataLocalStorage === null) {
+    console.log(dataLocalStorage);
   } else {
     myMovies = dataLocalStorage;
     renderMyMovies();
@@ -101,7 +101,13 @@ function handleClickFilm(event) {
   renderMyMovies();
   saveMyFavorites();
 }
-
+function pressEnter(ev) {
+  if (ev.keyCode === 13) {
+    ev.preventDefault();
+    callFetch();
+    return false;
+  }
+}
 //eventos
 function listenerFilm() {
   const film = document.querySelectorAll(".js-filmCard");
@@ -113,5 +119,7 @@ function listenerFilm() {
 btnResetSearch.addEventListener("click", handleClickResetInput);
 btnSearch.addEventListener("click", handleClickSearch);
 btnRemoveMyMovies.addEventListener("click", removeMyMovies);
+inputSearch.addEventListener("keydown", pressEnter);
 
+//lo que carga la web al abrir
 loadMyFavorites();

@@ -114,7 +114,6 @@ function handleClickFavorite(event) {
 
   myMovies.splice(match, 1);
   renderMyMovies();
-  console.log("idex", match);
 }
 function pressEnter(ev) {
   if (ev.keyCode === 13) {

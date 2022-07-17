@@ -1,6 +1,7 @@
 .page {
   display: grid;
   grid-template-columns: 1fr;
+  row-gap: 10px;
   width: 100%;
   min-height: 60vh;
   height: max-content;
@@ -61,8 +62,8 @@
 
   img {
     width: 170px;
-    height: 240px;
-    border: solid 6px $color-seconccdary;
+    height: 260px;
+    border: solid 6px $color-secondary;
     border-radius: 15px 15px 0 0;
     object-fit: cover;
     margin-bottom: 15px;
@@ -73,15 +74,14 @@
   h3 {
     position: absolute;
     width: 170px;
-    height: 50px;
+    height: 70px;
     top: 190px;
     padding-top: 5px;
     text-align: center;
     color: $color-font-secondary;
-    border: solid 2px $color-seconccdary;
-    background-color: $color-seconccdary;
+    border: solid 2px $color-secondary;
+    background-color: $color-secondary;
     border-radius: 15px 15px 0 0;
-    z-index: 999;
   }
 }
 .favList {
@@ -97,6 +97,7 @@
   li {
     position: relative;
     border: solid 4px $color-item-selected;
+    background-color: $color-secondary;
     border-radius: 15px;
     margin-bottom: 15px;
     height: 60px;
@@ -110,17 +111,18 @@
     }
     h3 {
       position: absolute;
+      display: flex;
+      flex-wrap: wrap;
       min-width: 175px;
-      width: 320px;
       height: 55px;
       top: 0px;
-      left: 50px;
+      left: 55px;
       font-size: 1.2rem;
       padding: 5px;
       text-align: start;
       color: $color-font-secondary;
-      border: solid 2px $color-seconccdary;
-      background-color: $color-seconccdary;
+      border: solid 2px $color-secondary;
+      background-color: transparent;
     }
   }
 }

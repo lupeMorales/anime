@@ -10,6 +10,7 @@ const imgWrong =
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
+const selectedCard = [];
 
 //***********funciones**********************
 
@@ -22,18 +23,7 @@ function callFetch() {
       renderFilmList();
     });
 }
-/* function isFavorite(data) {
-  const favoriteFound = myMovies.find((fav) => {
-    fav.id === data.id;
-  });
-  if (favoriteFound === undefined) {
-    console.log("no misiela");
-    return false;
-  } else {
-    console.log("viva viva");
-    return true;
-  }
-} */
+
 function renderFilmList() {
   let html = "";
 
@@ -112,6 +102,7 @@ function handleClickFilm(event) {
   const match = filmList.find((item) => item.mal_id === clickedMoovie);
   if (!myMovies.includes(match)) {
     myMovies.push(match);
+    selectedCard.push(match);
   }
 
   renderMyMovies();

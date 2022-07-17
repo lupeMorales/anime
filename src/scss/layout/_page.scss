@@ -9,14 +9,14 @@
   min-height: 60vh;
   height: max-content;
   padding: 3%;
-  background-color: rgb(57, 58, 58);
+  background-color: $color-bg;
   &__film {
     min-height: 60vh;
     height: max-content;
-    border: solid 4px coral;
+    border: solid 4px $color-details;
     border-radius: 25px;
     h2 {
-      color: aliceblue;
+      color: $color-font;
       padding: 20px;
       font-size: 2rem;
       text-transform: uppercase;
@@ -25,11 +25,11 @@
 
   &__fav-film {
     height: max-content;
-    border: solid 4px mediumorchid;
+    border: solid 4px $color-details;
     border-radius: 25px;
 
     h2 {
-      color: aliceblue;
+      color: $color-font;
       padding: 20px;
       font-size: 2rem;
       text-transform: uppercase;
@@ -39,7 +39,7 @@
       width: 60px;
       height: 20px;
       border: none;
-      background-color: grey;
+      background-color: $color-details;
       border-radius: 15px;
       margin: 10px 20px 10px;
     }
@@ -59,7 +59,7 @@
   img {
     width: 170px;
     height: 240px;
-    border: solid 6px cornsilk;
+    border: solid 6px $color-seconccdary;
     border-radius: 15px 15px 0 0;
     object-fit: cover;
     margin-bottom: 15px;
@@ -69,8 +69,11 @@
     width: 170px;
     height: 50px;
     top: 190px;
-    border: solid 2px cornsilk;
-    background-color: cornsilk;
+    padding-top: 5px;
+    text-align: center;
+    color: $color-font-secondary;
+    border: solid 2px $color-seconccdary;
+    background-color: $color-seconccdary;
     border-radius: 15px 15px 0 0;
     z-index: 999;
   }
@@ -87,18 +90,16 @@
 
   li {
     position: relative;
-    border: solid 4px red;
+    border: solid 4px $color-item-selected;
     border-radius: 15px;
     margin-bottom: 15px;
     height: 60px;
-
     overflow: hidden;
 
     img {
       width: 55px;
       height: 55px;
       border: none;
-
       object-fit: cover;
     }
     h3 {
@@ -110,8 +111,19 @@
       left: 50px;
       font-size: 1.2rem;
       padding: 5px;
-      border: solid 2px cornsilk;
-      background-color: cornsilk;
+      text-align: start;
+      color: $color-font-secondary;
+      border: solid 2px $color-seconccdary;
+      background-color: $color-seconccdary;
     }
+  }
+}
+.selected {
+  h3 {
+    border: solid 2px $color-item-selected;
+    background-color: $color-item-selected;
+  }
+  img {
+    border: solid 6px $color-item-selected;
   }
 }

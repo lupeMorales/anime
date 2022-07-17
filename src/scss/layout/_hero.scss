@@ -1,10 +1,10 @@
 .hero {
   width: 100%;
   height: auto;
-  background-color: black;
+  background-color: $color-bg;
   padding: 30px;
   &__title {
-    color: aliceblue;
+    color: $color-font;
     font-size: 3.4rem;
     margin-bottom: 15px;
   }
@@ -13,7 +13,7 @@
   }
 
   &__subtitle {
-    color: aliceblue;
+    color: $color-font-secondary;
     font-size: 2.4rem;
   }
   &__subtitle::first-letter {
@@ -42,7 +42,7 @@
     width: 80px;
     height: 40px;
     border: none;
-    background-color: grey;
+    background-color: $color-details;
     border-radius: 25px;
     vertical-align: middle;
   }

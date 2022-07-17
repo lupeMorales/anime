@@ -23,7 +23,7 @@
 .form {
   position: relative;
   input {
-    width: 260px;
+    width: 240px;
     max-width: 400px;
     height: 40px;
     border: none;
@@ -33,18 +33,22 @@
     margin: 25px 15px 15px 0;
   }
   input[type="text"]::placeholder {
-    color: #bbb;
+    color: $color-font-secondary;
     font-size: 1.8rem;
     padding: auto 30px;
   }
 
   button {
-    width: 80px;
+    width: 70px;
     height: 40px;
     border: none;
+    margin-right: 10px;
     background-color: $color-details;
     border-radius: 25px;
     vertical-align: middle;
+    i {
+      color: $color-font;
+    }
   }
   .button:hover {
     background-color: $color-item-selected;

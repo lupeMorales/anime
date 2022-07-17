@@ -10,6 +10,7 @@ let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 
 //funciones
+
 function callFetch() {
   fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch.value}`)
     .then((response) => response.json())
@@ -29,8 +30,10 @@ function renderFilmList() {
             <h3 >${item.title}</h3>
                 </li>`;
   });
+
   foundMovies.innerHTML = html;
 }
+
 function renderMyMovies() {
   let html = "";
   myMovies.forEach((item) => {
@@ -43,6 +46,28 @@ function renderMyMovies() {
   favoriteMovie.innerHTML = html;
 }
 
+function removeMyMovies() {
+  myMovies = [];
+  favoriteMovie.innerHTML = "";
+  localStorage.setItem("favoriteMovies", JSON.stringify(myMovies));
+}
+
+function saveMyFavorites() {
+  localStorage.setItem("favoriteMovies", JSON.stringify(myMovies));
+  console.log(localStorage);
+}
+
+function loadMyFavorites() {
+  const dataLocalStorage = JSON.parse(localStorage.getItem("favoriteMovies"));
+
+  if (dataLocalStorage === null) {
+    console.log("no misiela, no ha favoritos");
+  } else {
+    myMovies = dataLocalStorage;
+    renderMyMovies();
+  }
+}
+
 function handleClickSearch(ev) {
   ev.preventDefault();
   callFetch();
@@ -52,18 +77,16 @@ function handleClickResetInput(ev) {
   inputSearch.value = "";
   foundMovies.innerHTML = "";
 }
-function removeMyMovies() {
-  myMovies = [];
-  favoriteMovie.innerHTML = "";
-}
+
 function handleClickFilm(event) {
   const clickedMoovie = parseInt(event.currentTarget.id);
   const match = filmList.find((item) => item.mal_id === clickedMoovie);
   if (!myMovies.includes(match)) {
     myMovies.push(match);
   }
+
   renderMyMovies();
-  console.log(myMovies);
+  saveMyFavorites();
 }
 
 //eventos
@@ -73,12 +96,9 @@ function listenerFilm() {
     li.addEventListener("click", handleClickFilm);
   }
 }
-/* function listenerXBtn() {
-  const xBtn = document.querySelectorAll(".js-xBtn");
-  for (const btn of xBtn) {
-    btn.addEventListener("click", handleClickXbtn);
-  }
-} */
+
 btnResetSearch.addEventListener("click", handleClickResetInput);
 btnSearch.addEventListener("click", handleClickSearch);
 btnRemoveMyMovies.addEventListener("click", removeMyMovies);
+
+loadMyFavorites();

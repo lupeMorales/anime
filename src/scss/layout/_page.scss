@@ -43,6 +43,9 @@
       border-radius: 15px;
       margin: 10px 20px 10px;
     }
+    .button:hover {
+      background-color: $color-item-selected;
+    }
   }
 }
 .filmList {
@@ -63,6 +66,9 @@
     border-radius: 15px 15px 0 0;
     object-fit: cover;
     margin-bottom: 15px;
+  }
+  img:hover {
+    border-color: $color-item-selected;
   }
   h3 {
     position: absolute;

@@ -46,4 +46,7 @@
     border-radius: 25px;
     vertical-align: middle;
   }
+  .button:hover {
+    background-color: $color-item-selected;
+  }
 }

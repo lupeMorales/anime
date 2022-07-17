@@ -5,7 +5,9 @@ const favoriteMovie = document.querySelector(".js-favoriteMovies");
 const btnSearch = document.querySelector(".js-btnSearch");
 const btnResetSearch = document.querySelector(".js-resetSearch");
 const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
-
+const imgWrong =
+  "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
+const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 
@@ -20,13 +22,19 @@ function callFetch() {
       renderFilmList();
     });
 }
-
+/* function isFavorite(data) {
+  const favoriteFound = myMovies.find((fav) => {
+    fav.id === data.id;
+  });
+  if (favoriteFound === undefined) {
+    console.log("no misiela");
+    return false;
+  } else {
+    console.log("viva viva");
+    return true;
+  }
+} */
 function renderFilmList() {
-  const imgWrong =
-    "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
-  const imgDefault =
-    "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
-
   let html = "";
 
   filmList.forEach((item) => {
@@ -36,7 +44,7 @@ function renderFilmList() {
             <h3 >${item.title}</h3>
                 </li>`;
     } else {
-      html += `<li class="film-card js-filmCard" id=${item.mal_id}>
+      html += `<li class="film-card js-filmCard  " id=${item.mal_id}>
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
                   </li>`;
@@ -49,12 +57,19 @@ function renderFilmList() {
 
 function renderMyMovies() {
   let html = "";
+
   myMovies.forEach((item) => {
-    html += `<li class="favMovie-card js-filmCard" id=${item.mal_id}>
-    <img src="${item.images.jpg.image_url}" />
+    if (item.images.jpg.image_url === imgWrong) {
+      html += `<li class="film-card js-filmCard" id=${item.mal_id}>
+    <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
-    
                 </li>`;
+    } else {
+      html += `<li class="film-card js-filmCard " id=${item.mal_id}>
+      <img src="${item.images.jpg.image_url}" />
+              <h3 >${item.title}</h3>
+                  </li>`;
+    }
   });
   favoriteMovie.innerHTML = html;
 }

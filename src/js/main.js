@@ -60,18 +60,19 @@ function renderMyMovies() {
 
   myMovies.forEach((item) => {
     if (item.images.jpg.image_url === imgWrong) {
-      html += `<li class="film-card js-filmCard" id=${item.mal_id}>
+      html += `<li class="film-card js-favCard" id=${item.mal_id}>
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
                 </li>`;
     } else {
-      html += `<li class="film-card js-filmCard " id=${item.mal_id}>
+      html += `<li class="film-card js-favCard " id=${item.mal_id}>
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
-                  </li>`;
+              </li>`;
     }
   });
   favoriteMovie.innerHTML = html;
+  listenerFavorites();
 }
 
 function removeMyFavorites() {
@@ -116,6 +117,14 @@ function handleClickFilm(event) {
   renderMyMovies();
   saveMyFavorites();
 }
+function handleClickFavorite(event) {
+  const clickedFav = parseInt(event.currentTarget.id);
+  const match = myMovies.findIndex((item) => item.mal_id === clickedFav);
+
+  myMovies.splice(match, 1);
+  renderMyMovies();
+  console.log("idex", match);
+}
 function pressEnter(ev) {
   if (ev.keyCode === 13) {
     ev.preventDefault();
@@ -127,6 +136,12 @@ function listenerFilm() {
   const film = document.querySelectorAll(".js-filmCard");
   for (const li of film) {
     li.addEventListener("click", handleClickFilm);
+  }
+}
+function listenerFavorites() {
+  const film = document.querySelectorAll(".js-favCard");
+  for (const li of film) {
+    li.addEventListener("click", handleClickFavorite);
   }
 }
 

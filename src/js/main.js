@@ -7,6 +7,7 @@ const btnResetSearch = document.querySelector(".js-resetSearch");
 const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
 
 let filmList = []; //array guarda resultado del fetch
+
 let myMovies = [];
 
 //funciones
@@ -23,12 +24,25 @@ function callFetch() {
 }
 
 function renderFilmList() {
+  const imgWrong =
+    "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
+  const imgDefault =
+    "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
+
   let html = "";
+
   filmList.forEach((item) => {
-    html += `<li class="film-card js-filmCard" id=${item.mal_id}>
-    <img src="${item.images.jpg.image_url}" />
+    if (item.images.jpg.image_url === imgWrong) {
+      html += `<li class="film-card js-filmCard" id=${item.mal_id}>
+    <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
                 </li>`;
+    } else {
+      html += `<li class="film-card js-filmCard" id=${item.mal_id}>
+      <img src="${item.images.jpg.image_url}" />
+              <h3 >${item.title}</h3>
+                  </li>`;
+    }
   });
 
   foundMovies.innerHTML = html;
@@ -61,7 +75,6 @@ function loadMyFavorites() {
   const dataLocalStorage = JSON.parse(localStorage.getItem("favoriteMovies"));
 
   if (dataLocalStorage === null) {
-    console.log("no misiela, no ha favoritos");
   } else {
     myMovies = dataLocalStorage;
     renderMyMovies();

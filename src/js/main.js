@@ -10,7 +10,6 @@ const imgWrong =
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
-const selectedCard = [];
 
 //***********funciones**********************
 
@@ -26,15 +25,24 @@ function callFetch() {
 
 function renderFilmList() {
   let html = "";
+  let classSelected = "";
 
   filmList.forEach((item) => {
+    const selected = myMovies.findIndex(
+      (selected) => item.mal_id === selected.mal_id
+    );
+    if (selected !== -1) {
+      classSelected = "selected";
+    } else {
+      classSelected = "";
+    }
     if (item.images.jpg.image_url === imgWrong) {
-      html += `<li class="film-card js-filmCard" id=${item.mal_id}>
+      html += `<li class="film-card js-filmCard  ${classSelected}" id=${item.mal_id}>
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
                 </li>`;
     } else {
-      html += `<li class="film-card js-filmCard  " id=${item.mal_id}>
+      html += `<li class="film-card js-filmCard  ${classSelected} " id=${item.mal_id}>
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
                   </li>`;
@@ -98,13 +106,12 @@ function handleClickResetInput(ev) {
 }
 
 function handleClickFilm(event) {
-  const clickedMoovie = parseInt(event.currentTarget.id);
-  const match = filmList.find((item) => item.mal_id === clickedMoovie);
+  const clickedMovie = parseInt(event.currentTarget.id);
+  const match = filmList.find((item) => item.mal_id === clickedMovie);
   if (!myMovies.includes(match)) {
     myMovies.push(match);
-    selectedCard.push(match);
   }
-
+  renderFilmList();
   renderMyMovies();
   saveMyFavorites();
 }

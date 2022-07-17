@@ -1,7 +1,7 @@
 .page {
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 10px;
+  row-gap: 15px;
   width: 100%;
   min-height: 60vh;
   height: max-content;
@@ -28,6 +28,10 @@
     height: max-content;
     border: solid 4px $color-details;
     border-radius: 25px;
+    order: -1;
+    @media all and (min-width: 768px) {
+      order: inherit;
+    }
 
     h2 {
       color: $color-font;
@@ -43,6 +47,7 @@
       background-color: $color-details;
       border-radius: 15px;
       margin: 10px 20px 10px;
+      color: $color-font;
     }
     .button:hover {
       background-color: $color-item-selected;

@@ -23,7 +23,7 @@
 .form {
   position: relative;
   input {
-    width: 240px;
+    width: 280px;
     max-width: 400px;
     height: 40px;
     border: none;
@@ -31,6 +31,10 @@
     background-color: rgb(230, 228, 228);
     padding: 15px;
     margin: 25px 15px 15px 0;
+    &:focus {
+      outline: none;
+      outline: solid 2.5px $color-details;
+    }
   }
   input[type="text"]::placeholder {
     color: $color-font-secondary;

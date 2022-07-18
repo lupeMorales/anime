@@ -8,6 +8,7 @@ const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
 const imgWrong =
   "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
+
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 let selectedCard = [];
@@ -49,7 +50,7 @@ function renderFilmList() {
                   </li>`;
     }
   });
-  loadSelectedCars();
+
   foundMovies.innerHTML = html;
   listenerFilm();
 }
@@ -86,20 +87,28 @@ function saveSelectedCards() {
   localStorage.setItem("selectedCards", JSON.stringify(selectedCard));
 }
 function loadSelectedCars() {
-  const dataLocalStorage = JSON.parse(localStorage.getItem(selectedCard));
+  const dataLocalStorage = JSON.parse(localStorage.getItem("selectedCards"));
+  if (dataLocalStorage === null) {
+    console.log("comprobacion null", dataLocalStorage);
+  } else {
+    selectedCard = dataLocalStorage;
+    console.log("cargando seleccionados");
+    renderFilmList();
+  }
 }
+
 function saveMyFavorites() {
   localStorage.setItem("favoriteMovies", JSON.stringify(myMovies));
-  console.log(localStorage);
 }
 
 function loadMyFavorites() {
   const dataLocalStorage = JSON.parse(localStorage.getItem("favoriteMovies"));
 
   if (dataLocalStorage === null) {
-    console.log(dataLocalStorage);
+    /*  console.log(dataLocalStorage); */
   } else {
     myMovies = dataLocalStorage;
+    console.log("cargando favoritos");
     renderMyMovies();
   }
 }
@@ -125,6 +134,7 @@ function handleClickFilm(event) {
   renderMyMovies();
   saveMyFavorites();
   saveSelectedCards();
+  console.log(selectedCard);
 }
 function handleClickFavorite(event) {
   const clickedFav = parseInt(event.currentTarget.id);
@@ -161,3 +171,4 @@ inputSearch.addEventListener("keydown", pressEnter);
 
 //*********on load*************
 loadMyFavorites();
+loadSelectedCars();

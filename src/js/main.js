@@ -8,10 +8,12 @@ const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
 const imgWrong =
   "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
-
+const warnings = document.querySelector(".js-warning");
+const removeMsg = () => (warnings.innerHTML = "");
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 let selectedCard = [];
+btnSearch.disabled = false;
 
 //***********funciones**********************
 
@@ -113,10 +115,34 @@ function loadMyFavorites() {
     renderMyMovies();
   }
 }
+
+function validateInput() {
+  if (inputSearch.value === "") {
+    btnSearch.disabled = true;
+    warnings.innerHTML = "Introduce un título";
+    setTimeout(removeMsg, 3000);
+  } else {
+    btnSearch.disabled = false;
+    warnings.innerHTML = "";
+  }
+}
+function notFound() {
+  const result = filmList.find((item) => inputSearch.value);
+  console.log("result", result);
+  if (result === undefined) {
+    warnings.innerHTML = "Título no encontrado";
+    setInterval(removeMsg, 3000);
+  }
+}
+
 // ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();
-  callFetch();
+  validateInput();
+  if (btnSearch.disabled === false) {
+    callFetch();
+    notFound();
+  }
 }
 function handleClickResetInput(ev) {
   ev.preventDefault();

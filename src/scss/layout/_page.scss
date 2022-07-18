@@ -42,7 +42,7 @@
 
     button {
       width: 60px;
-      height: 20px;
+      height: 25px;
       border: none;
       background-color: $color-details;
       border-radius: 15px;
@@ -50,6 +50,9 @@
       color: $color-font;
       &:hover {
         background-color: $color-item;
+      }
+      &::first-letter {
+        text-transform: capitalize;
       }
     }
   }

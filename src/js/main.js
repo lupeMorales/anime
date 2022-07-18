@@ -22,6 +22,9 @@ function callFetch() {
       console.log(json);
       filmList = json.data;
       renderFilmList();
+    })
+    .catch((error) => {
+      console.log(`Se ha producido un error ${error}`);
     });
 }
 

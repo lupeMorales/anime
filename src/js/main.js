@@ -134,7 +134,25 @@ function notFound() {
     setInterval(removeMsg, 3000);
   }
 }
-
+function pressEnter(ev) {
+  if (ev.keyCode === 13) {
+    ev.preventDefault();
+    callFetch();
+    return false;
+  }
+}
+function listenerFilm() {
+  const film = document.querySelectorAll(".js-filmCard");
+  for (const li of film) {
+    li.addEventListener("click", handleClickFilm);
+  }
+}
+function listenerFavorites() {
+  const film = document.querySelectorAll(".js-favCard");
+  for (const li of film) {
+    li.addEventListener("click", handleClickFavorite);
+  }
+}
 // ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();
@@ -175,25 +193,6 @@ function handleClickFavorite(event) {
   selectedCard.splice(matchSel, 1);
   renderFilmList();
   renderMyMovies();
-}
-function pressEnter(ev) {
-  if (ev.keyCode === 13) {
-    ev.preventDefault();
-    callFetch();
-    return false;
-  }
-}
-function listenerFilm() {
-  const film = document.querySelectorAll(".js-filmCard");
-  for (const li of film) {
-    li.addEventListener("click", handleClickFilm);
-  }
-}
-function listenerFavorites() {
-  const film = document.querySelectorAll(".js-favCard");
-  for (const li of film) {
-    li.addEventListener("click", handleClickFavorite);
-  }
 }
 
 //*********eventos************

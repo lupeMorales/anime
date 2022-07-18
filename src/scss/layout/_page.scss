@@ -48,9 +48,9 @@
       border-radius: 15px;
       margin: 10px 20px 10px;
       color: $color-font;
-    }
-    .button:hover {
-      background-color: $color-item;
+      &:hover {
+        background-color: $color-item;
+      }
     }
   }
 }

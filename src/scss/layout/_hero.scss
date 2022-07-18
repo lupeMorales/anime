@@ -33,13 +33,15 @@
     margin: 25px 15px 15px 0;
     &:focus {
       outline: none;
-      outline: solid 2.5px $color-details;
+      border: solid 2px $color-details;
+      border-width: 5px;
+      border-style: double;
     }
-  }
-  input[type="text"]::placeholder {
-    color: $color-font-secondary;
-    font-size: 1.8rem;
-    padding: auto 30px;
+    &[type="text"]::placeholder {
+      color: $color-font-secondary;
+      font-size: 1.8rem;
+      padding: auto 30px;
+    }
   }
 
   button {
@@ -50,11 +52,11 @@
     background-color: $color-details;
     border-radius: 25px;
     vertical-align: middle;
+    &:hover {
+      background-color: $color-item;
+    }
     i {
       color: $color-font;
     }
-  }
-  .button:hover {
-    background-color: $color-item;
   }
 }

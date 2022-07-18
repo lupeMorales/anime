@@ -122,10 +122,12 @@ function handleClickResetInput(ev) {
   inputSearch.value = "";
   foundMovies.innerHTML = "";
 }
-
 function handleClickFilm(event) {
   const clickedMovie = parseInt(event.currentTarget.id);
   const match = filmList.find((item) => item.mal_id === clickedMovie);
+  console.log("match", match);
+  console.log(clickedMovie);
+  console.log("miMovies", myMovies);
   if (!myMovies.includes(match)) {
     myMovies.push(match);
     selectedCard.push(match);
@@ -136,11 +138,34 @@ function handleClickFilm(event) {
   saveSelectedCards();
   console.log(selectedCard);
 }
+/* function handleClickFilm(event) {
+  const clickedMovie = parseInt(event.currentTarget.id);
+  const match = filmList.find((item) => item.mal_id === clickedMovie);
+  const matchSelected = myMovies.findIndex(
+    (item) => item.mal_id === clickedMovie
+  );
+  console.log("match", match);
+  console.log("clicked movie", clickedMovie);
+  console.log("miMovies", myMovies);
+  if (matchSelected !== 1) {
+    myMovies.push(match);
+    selectedCard.push(match);
+  }
+  renderFilmList();
+  renderMyMovies();
+  saveMyFavorites();
+  saveSelectedCards();
+  console.log(selectedCard);
+  console.log("************");
+} */
 function handleClickFavorite(event) {
   const clickedFav = parseInt(event.currentTarget.id);
-  const match = myMovies.findIndex((item) => item.mal_id === clickedFav);
+  const matchFav = myMovies.findIndex((item) => item.mal_id === clickedFav);
+  const matchSel = selectedCard.findIndex((item) => item.mal_id === matchFav);
 
-  myMovies.splice(match, 1);
+  myMovies.splice(matchFav, 1);
+  selectedCard.splice(matchSel, 1);
+  renderFilmList();
   renderMyMovies();
 }
 function pressEnter(ev) {

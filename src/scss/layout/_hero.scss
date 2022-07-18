@@ -3,10 +3,16 @@
   height: auto;
   background-color: $color-bg;
   padding: 30px;
+  body.light & {
+    background-color: #fefefe;
+  }
   &__title {
     color: $color-font;
     font-size: 3.4rem;
     margin-bottom: 15px;
+    body.light & {
+      color: $color-bg;
+    }
   }
   &__title::first-letter {
     text-transform: uppercase;

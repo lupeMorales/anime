@@ -7,6 +7,9 @@
   height: max-content;
   padding: 3%;
   background-color: $color-bg;
+  body.light & {
+    background-color: #fefefe;
+  }
   @media all and (min-width: 768px) {
     grid-template-columns: 2fr 1fr;
     column-gap: 15px;
@@ -21,6 +24,9 @@
       padding: 20px;
       font-size: 2rem;
       text-transform: uppercase;
+      body.light & {
+        color: $color-font-secondary;
+      }
     }
   }
 
@@ -38,6 +44,9 @@
       padding: 20px;
       font-size: 2rem;
       text-transform: uppercase;
+      body.light & {
+        color: $color-font-secondary;
+      }
     }
 
     button {

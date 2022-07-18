@@ -10,6 +10,7 @@ const imgWrong =
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
+let selectedCard = [];
 
 //***********funciones**********************
 
@@ -28,7 +29,7 @@ function renderFilmList() {
   let classSelected = "";
 
   filmList.forEach((item) => {
-    const selected = myMovies.findIndex(
+    const selected = selectedCard.findIndex(
       (selected) => item.mal_id === selected.mal_id
     );
     if (selected !== -1) {
@@ -48,7 +49,7 @@ function renderFilmList() {
                   </li>`;
     }
   });
-
+  loadSelectedCars();
   foundMovies.innerHTML = html;
   listenerFilm();
 }
@@ -70,15 +71,23 @@ function renderMyMovies() {
     }
   });
   favoriteMovie.innerHTML = html;
+
   listenerFavorites();
 }
 
 function removeMyFavorites() {
   myMovies = [];
+  selectedCard = [];
   favoriteMovie.innerHTML = "";
+  renderFilmList();
   localStorage.setItem("favoriteMovies", JSON.stringify(myMovies));
 }
-
+function saveSelectedCards() {
+  localStorage.setItem("selectedCards", JSON.stringify(selectedCard));
+}
+function loadSelectedCars() {
+  const dataLocalStorage = JSON.parse(localStorage.getItem(selectedCard));
+}
 function saveMyFavorites() {
   localStorage.setItem("favoriteMovies", JSON.stringify(myMovies));
   console.log(localStorage);
@@ -110,10 +119,12 @@ function handleClickFilm(event) {
   const match = filmList.find((item) => item.mal_id === clickedMovie);
   if (!myMovies.includes(match)) {
     myMovies.push(match);
+    selectedCard.push(match);
   }
   renderFilmList();
   renderMyMovies();
   saveMyFavorites();
+  saveSelectedCards();
 }
 function handleClickFavorite(event) {
   const clickedFav = parseInt(event.currentTarget.id);

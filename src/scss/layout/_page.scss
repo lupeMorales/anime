@@ -14,7 +14,7 @@
   &__film {
     min-height: 10vh;
     height: max-content;
-    border: solid 4px $color-details;
+    border: solid 4px $color-item;
     border-radius: 25px;
     h2 {
       color: $color-font;
@@ -50,7 +50,7 @@
       color: $color-font;
     }
     .button:hover {
-      background-color: $color-item-selected;
+      background-color: $color-item;
     }
   }
 }
@@ -63,19 +63,25 @@
 
   li {
     position: relative;
+    &:hover {
+      img {
+        border-color: $color-secondary;
+      }
+      h3 {
+        background-color: $color-secondary;
+      }
+    }
   }
 
   img {
     width: 170px;
     height: 260px;
-    border: solid 6px $color-secondary;
+    border: solid 6px $color-item;
     border-radius: 15px 15px 0 0;
     object-fit: cover;
     margin-bottom: 15px;
   }
-  img:hover {
-    border-color: $color-item-selected;
-  }
+
   h3 {
     position: absolute;
     width: 170px;
@@ -84,9 +90,8 @@
     padding-top: 5px;
     text-align: center;
     color: $color-font-secondary;
-    border: solid 2px $color-secondary;
-    background-color: $color-secondary;
-    border-radius: 15px 15px 0 0;
+    background-color: $color-item;
+    border-radius: 25px 25px 0 0;
   }
 }
 .favList {
@@ -101,7 +106,7 @@
 
   li {
     position: relative;
-    border: solid 4px $color-item-selected;
+    border: solid 4px $color-item;
     background-color: $color-secondary;
     border-radius: 15px;
     margin-bottom: 15px;
@@ -134,10 +139,10 @@
 
 .selected {
   h3 {
-    border: solid 2px $color-item-selected;
-    background-color: $color-item-selected;
+    border: solid 2px $color-secondary;
+    background-color: $color-secondary;
   }
   img {
-    border: solid 6px $color-item-selected;
+    border: solid 6px $color-secondary;
   }
 }

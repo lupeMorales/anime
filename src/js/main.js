@@ -81,16 +81,16 @@ function removeMyFavorites() {
   selectedCard = [];
   favoriteMovie.innerHTML = "";
   renderFilmList();
-  localStorage.setItem("favoriteMovies", JSON.stringify(myMovies));
+  saveMyFavorites();
+  saveSelectedCards();
 }
+
 function saveSelectedCards() {
   localStorage.setItem("selectedCards", JSON.stringify(selectedCard));
 }
 function loadSelectedCars() {
   const dataLocalStorage = JSON.parse(localStorage.getItem("selectedCards"));
-  if (dataLocalStorage === null) {
-    console.log("comprobacion null", dataLocalStorage);
-  } else {
+  if (dataLocalStorage !== null) {
     selectedCard = dataLocalStorage;
     console.log("cargando seleccionados");
     renderFilmList();
@@ -104,9 +104,7 @@ function saveMyFavorites() {
 function loadMyFavorites() {
   const dataLocalStorage = JSON.parse(localStorage.getItem("favoriteMovies"));
 
-  if (dataLocalStorage === null) {
-    /*  console.log(dataLocalStorage); */
-  } else {
+  if (dataLocalStorage !== null) {
     myMovies = dataLocalStorage;
     console.log("cargando favoritos");
     renderMyMovies();
@@ -125,6 +123,8 @@ function handleClickResetInput(ev) {
 function handleClickFilm(event) {
   const clickedMovie = parseInt(event.currentTarget.id);
   const match = filmList.find((item) => item.mal_id === clickedMovie);
+  const matchSel = myMovies.findIndex((item) => item.mal_id === match);
+  console.log("matchSel", matchSel);
   console.log("match", match);
   console.log(clickedMovie);
   console.log("miMovies", myMovies);
@@ -137,6 +137,7 @@ function handleClickFilm(event) {
   saveMyFavorites();
   saveSelectedCards();
   console.log(selectedCard);
+  console.log("*****************");
 }
 /* function handleClickFilm(event) {
   const clickedMovie = parseInt(event.currentTarget.id);
@@ -197,3 +198,5 @@ inputSearch.addEventListener("keydown", pressEnter);
 //*********on load*************
 loadMyFavorites();
 loadSelectedCars();
+console.log(selectedCard);
+console.log(myMovies);

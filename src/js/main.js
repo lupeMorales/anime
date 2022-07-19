@@ -10,6 +10,7 @@ const imgWrong =
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
 const warnings = document.querySelector(".js-warning");
 const removeMsg = () => (warnings.innerHTML = "");
+
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 let selectedCard = [];
@@ -77,8 +78,8 @@ function renderMyMovies() {
               </li>`;
     }
   });
-  favoriteMovie.innerHTML = html;
 
+  favoriteMovie.innerHTML = html;
   listenerFavorites();
 }
 
@@ -98,7 +99,6 @@ function loadSelectedCars() {
   const dataLocalStorage = JSON.parse(localStorage.getItem("selectedCards"));
   if (dataLocalStorage !== null) {
     selectedCard = dataLocalStorage;
-    console.log("cargando seleccionados");
     renderFilmList();
   }
 }
@@ -112,7 +112,6 @@ function loadMyFavorites() {
 
   if (dataLocalStorage !== null) {
     myMovies = dataLocalStorage;
-    console.log("cargando favoritos");
     renderMyMovies();
   }
 }
@@ -131,8 +130,7 @@ function notFound() {
   const result = filmList.filter((item) =>
     item.title.toLowerCase().includes(inputSearch.value.toLowerCase())
   );
-  console.log("resultado", result.length);
-  console.log("***********");
+
   if (result.length === 0) {
     warnings.innerHTML = "Título no encontrado";
     setTimeout(removeMsg, 3000);
@@ -170,7 +168,6 @@ function handleClickSearch(ev) {
 
   if (btnSearch.disabled === false) {
     callFetch();
-    /* notFound(); */
   }
 }
 function handleClickResetInput(ev) {
@@ -192,7 +189,6 @@ function handleClickFilm(event) {
   renderMyMovies();
   saveMyFavorites();
   saveSelectedCards();
-  console.log(selectedCard);
 }
 
 function handleClickFavorite(event) {

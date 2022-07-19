@@ -4,7 +4,8 @@
     
    
    
-  
+  > **Note**
+> Existe una versión Beta en la rama dev con la opción de modo dark o light
 
 
 ANiMe es una aplicación web de búsqueda de series de anime, que nos permite marcar y desmarcar nuestras series favoritas y guardarlas en local storage.

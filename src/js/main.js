@@ -46,12 +46,12 @@ function renderFilmList() {
       classSelected = "";
     }
     if (item.images.jpg.image_url === imgWrong) {
-      html += `<li class="film-card js-filmCard  ${classSelected}" id=${item.mal_id}>
+      html += `<li class="film-card js-filmCard  ${classSelected}" id=${item.mal_id} title="click para seleccionar">
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
                 </li>`;
     } else {
-      html += `<li class="film-card js-filmCard  ${classSelected} " id=${item.mal_id}>
+      html += `<li class="film-card js-filmCard  ${classSelected} " id=${item.mal_id} title="click para seleccionar">
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
                   </li>`;
@@ -67,12 +67,12 @@ function renderMyMovies() {
 
   myMovies.forEach((item) => {
     if (item.images.jpg.image_url === imgWrong) {
-      html += `<li class="film-card js-favCard" id=${item.mal_id}>
+      html += `<li class="film-card js-favCard" id=${item.mal_id} title="click para eliminar">
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
                 </li>`;
     } else {
-      html += `<li class="film-card js-favCard " id=${item.mal_id}>
+      html += `<li class="film-card js-favCard " id=${item.mal_id} title="click para eliminar">
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
               </li>`;

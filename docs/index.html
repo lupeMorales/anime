@@ -33,15 +33,17 @@
           placeholder="buscar... "
           name="film"
           class="js-inputSearch search"
+          title="Introduce título"
         />
 
-        <button class="button">
+        <button class="button" title="Buscar">
           <i class="fa-solid fa-magnifying-glass fa-2x js-btnSearch"></i>
         </button>
-        <button class="button">
+        <button class="button" title="Borrar">
           <i class="fa-regular fa-circle-xmark fa-2x js-resetSearch button"></i>
         </button>
       </form>
+      <p class="js-warning warning"></p>
     </section>
 
 
@@ -56,16 +58,10 @@
       <section class="page__fav-film">
         <h2>mis favoritas</h2>
         <div class="card-container">
-          <ul class="favList js-favoriteMovies">
-            <!-- <li class="favMovie-card js-filmCard" id=${item.mal_id}>
-            <img src="${item.images.jpg.image_url}" />
-                    <h3 >${item.title}</h3>
-            
-                        </li>` -->
-          </ul>
+          <ul class="favList js-favoriteMovies"></ul>
         </div>
 
-        <button class="js-btnRemoveAll button">reset all</button>
+        <button class="js-btnRemoveAll button" title="Eliminar">eliminar</button>
       </section>
     </main>
 

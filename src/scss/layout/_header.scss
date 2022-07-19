@@ -2,9 +2,53 @@
   display: flex;
   width: 100%;
   background-color: $color-bg;
+  body.light & {
+    background-color: #fefefe;
+  }
   img {
     margin: auto;
     width: 20%;
     padding: 10px 0;
+  }
+  &__switch {
+    position: relative;
+    display: flex;
+    height: 30px;
+    top: 15px;
+    right: 30px;
+    background-color: $color-font-secondary;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: #f1f1f1;
+      top: 0;
+      left: 0;
+      right: unset;
+      border-radius: 50px;
+      transition: 0.3s ease all;
+      box-shadow: 0px 0px 2px 2px $color-bg;
+    }
+    &.active {
+      background-color: orange;
+      &::after {
+        left: unset;
+        right: 0;
+      }
+    }
+    span {
+      font-display: block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      background-color: none;
+      color: #fff;
+    }
   }
 }

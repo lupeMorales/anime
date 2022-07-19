@@ -7,6 +7,9 @@
   height: max-content;
   padding: 3%;
   background-color: $color-bg;
+  body.light & {
+    background-color: #fefefe;
+  }
   @media all and (min-width: 768px) {
     grid-template-columns: 2fr 1fr;
     column-gap: 15px;
@@ -16,11 +19,15 @@
     height: max-content;
     border: solid 4px $color-details;
     border-radius: 25px;
+    background-color: #e6e4e4;
     h2 {
       color: $color-font;
       padding: 20px;
       font-size: 2rem;
       text-transform: uppercase;
+      body.light & {
+        color: $color-font-secondary;
+      }
     }
   }
 
@@ -29,6 +36,7 @@
     border: solid 4px $color-details;
     border-radius: 25px;
     order: -1;
+    background-color: #e6e4e4;
     @media all and (min-width: 768px) {
       order: inherit;
     }
@@ -38,6 +46,9 @@
       padding: 20px;
       font-size: 2rem;
       text-transform: uppercase;
+      body.light & {
+        color: $color-font-secondary;
+      }
     }
 
     button {
@@ -75,6 +86,17 @@
         background-color: $color-secondary;
       }
     }
+
+    body.light & {
+      &:hover {
+        img {
+          border-color: #fefefe;
+        }
+        h3 {
+          background-color: #fefefe;
+        }
+      }
+    }
   }
 
   img {
@@ -96,6 +118,7 @@
     color: $color-font-secondary;
     background-color: $color-item;
     border-radius: 25px 25px 0 0;
+    border: none;
   }
 }
 .favList {
@@ -116,6 +139,9 @@
     margin-bottom: 15px;
     height: 60px;
     overflow: hidden;
+    body.light & {
+      background-color: #fefefe;
+    }
 
     img {
       width: 55px;
@@ -135,7 +161,7 @@
       padding: 5px;
       text-align: start;
       color: $color-font-secondary;
-      border: solid 2px $color-secondary;
+      border: none;
       background-color: transparent;
     }
   }
@@ -143,10 +169,15 @@
 
 .selected {
   h3 {
-    border: solid 2px $color-secondary;
     background-color: $color-secondary;
+    body.light & {
+      background-color: #fefefe;
+    }
   }
   img {
     border: solid 6px $color-secondary;
+    body.light & {
+      border: solid 6px #fefefe;
+    }
   }
 }

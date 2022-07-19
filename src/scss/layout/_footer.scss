@@ -6,8 +6,14 @@
   color: $color-font;
   font-size: 1.5rem;
   padding: 30px;
+  body.light & {
+    background-color: #fefefe;
+  }
   p {
     margin: auto;
+    body.light & {
+      color: $color-font-secondary;
+    }
   }
 
   .link {

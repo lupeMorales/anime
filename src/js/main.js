@@ -5,11 +5,14 @@ const favoriteMovie = document.querySelector(".js-favoriteMovies");
 const btnSearch = document.querySelector(".js-btnSearch");
 const btnResetSearch = document.querySelector(".js-resetSearch");
 const btnRemoveMyMovies = document.querySelector(".js-btnRemoveAll");
+
 const imgWrong =
   "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
+
 const warnings = document.querySelector(".js-warning");
 const removeMsg = () => (warnings.innerHTML = "");
+const btnSwitch = document.querySelector(".js-switch");
 
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
@@ -138,7 +141,10 @@ function notFound() {
     warnings.innerHTML = "";
   }
 }
-
+function lightMode() {
+  document.body.classList.toggle("light");
+  btnSwitch.classList.toggle("active");
+}
 function listenerFilm() {
   const film = document.querySelectorAll(".js-filmCard");
   for (const li of film) {
@@ -207,7 +213,7 @@ btnResetSearch.addEventListener("click", handleClickResetInput);
 btnSearch.addEventListener("click", handleClickSearch);
 btnRemoveMyMovies.addEventListener("click", removeMyFavorites);
 inputSearch.addEventListener("keydown", pressEnter);
-
+btnSwitch.addEventListener("click", lightMode);
 //*********on load*************
 loadMyFavorites();
 loadSelectedCars();

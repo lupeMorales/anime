@@ -23,6 +23,7 @@ function callFetch() {
     .then((json) => {
       console.log(json);
       filmList = json.data;
+      notFound();
       renderFilmList();
     })
     .catch((error) => {
@@ -127,20 +128,19 @@ function validateInput() {
   }
 }
 function notFound() {
-  const result = filmList.find((item) => inputSearch.value);
-  console.log("result", result);
-  if (result === undefined) {
+  const result = filmList.filter((item) =>
+    item.title.toLowerCase().includes(inputSearch.value.toLowerCase())
+  );
+  console.log("resultado", result.length);
+  console.log("***********");
+  if (result.length === 0) {
     warnings.innerHTML = "Título no encontrado";
-    setInterval(removeMsg, 3000);
+    setTimeout(removeMsg, 3000);
+  } else {
+    warnings.innerHTML = "";
   }
 }
-function pressEnter(ev) {
-  if (ev.keyCode === 13) {
-    ev.preventDefault();
-    callFetch();
-    return false;
-  }
-}
+
 function listenerFilm() {
   const film = document.querySelectorAll(".js-filmCard");
   for (const li of film) {
@@ -153,13 +153,24 @@ function listenerFavorites() {
     li.addEventListener("click", handleClickFavorite);
   }
 }
+function pressEnter(ev) {
+  if (ev.keyCode === 13) {
+    ev.preventDefault();
+    validateInput();
+    if (btnSearch.disabled === false) {
+      callFetch();
+    }
+    return false;
+  }
+}
 // ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();
   validateInput();
+
   if (btnSearch.disabled === false) {
     callFetch();
-    notFound();
+    /* notFound(); */
   }
 }
 function handleClickResetInput(ev) {

@@ -14,7 +14,7 @@ const removeMsg = () => (warnings.innerHTML = "");
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 let selectedCard = [];
-let arrayPredefinido = ["OVA", "Special"];
+/* let arrayPredefinido = ["OVA", "Special"]; */
 btnSearch.disabled = false;
 
 //***********funciones**********************
@@ -47,23 +47,23 @@ function renderFilmList() {
     } else {
       classSelected = "";
     }
-    if (arrayPredefinido.includes(item.type)) {
+    /*    if (arrayPredefinido.includes(item.type)) {
       special = "Historia Esecial";
     } else {
       special = "";
-    }
+    } */
 
     if (item.images.jpg.image_url === imgWrong) {
       html += `<li class="film-card js-filmCard  ${classSelected}" id=${item.mal_id} title="click para seleccionar">
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
-            <p>${item.type} ${special}</p>
+            /* <p>${item.type}/*  ${special} */</p> */
                 </li>`;
     } else {
       html += `<li class="film-card js-filmCard  ${classSelected} " id=${item.mal_id} title="click para seleccionar">
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
-              <p>${item.type} ${special}</p>
+            /*   <p>${item.type} /* ${special} */</p> */
                   </li>`;
     }
   });
@@ -147,6 +147,7 @@ function notFound() {
   } else {
     warnings.innerHTML = "";
   }
+  clearInputSearch();
 }
 
 function listenerFilm() {
@@ -171,6 +172,9 @@ function pressEnter(ev) {
     return false;
   }
 }
+function clearInputSearch() {
+  inputSearch.value = "";
+}
 // ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();
@@ -182,29 +186,24 @@ function handleClickSearch(ev) {
 }
 function handleClickResetInput(ev) {
   ev.preventDefault();
-  inputSearch.value = "";
+  clearInputSearch();
   foundMovies.innerHTML = "";
 }
 
 function handleClickFilm(event) {
   const clickedMovie = parseInt(event.currentTarget.id);
   const match = filmList.find((item) => item.mal_id === clickedMovie);
-  console.log(match.title);
-}
-/* function handleClickFilm(event) {
-const clickedMovie = parseInt(event.currentTarget.id);
-  const match = filmList.find((item) => item.mal_id === clickedMovie);
   const select = myMovies.findIndex((item) => item.mal_id === match.mal_id);
 
   if (select === -1) {
     myMovies.push(match);
-    selectedCard.push(match); 
+    selectedCard.push(match);
   }
   renderFilmList();
   renderMyMovies();
   saveMyFavorites();
   saveSelectedCards();
-} */
+}
 
 function handleClickFavorite(event) {
   const clickedFav = parseInt(event.currentTarget.id);

@@ -9,7 +9,6 @@ const imgWrong =
   "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png";
 const imgDefault = "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
 const warnings = document.querySelector(".js-warning");
-const removeMsg = () => (warnings.innerHTML = "");
 
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
@@ -23,13 +22,13 @@ function callFetch() {
   fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch.value}`)
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
       filmList = json.data;
       notFound();
       renderFilmList();
     })
     .catch((error) => {
       console.log(`Se ha producido un error ${error}`);
+      console.log("no mi siela, esto no tendría que salir");
     });
 }
 
@@ -175,6 +174,8 @@ function pressEnter(ev) {
 function clearInputSearch() {
   inputSearch.value = "";
 }
+
+const removeMsg = () => (warnings.innerHTML = "");
 // ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();

@@ -93,8 +93,12 @@ function removeMyFavorites() {
   myMovies = [];
 
   favoriteMovie.innerHTML = "";
-  renderFilmList();
-  saveMyFavorites();
+  if (foundMovies.innerHTML !== "") {
+    renderFilmList();
+    saveMyFavorites();
+  } else {
+    saveMyFavorites();
+  }
 }
 
 function saveMyFavorites() {

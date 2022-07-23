@@ -2,14 +2,16 @@
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 15px;
+  align-items: center;
   width: 100%;
-  min-height: 60vh;
+  min-height: 40vh;
   height: max-content;
   padding: 3%;
   background-color: $color-bg;
   @media all and (min-width: 768px) {
     grid-template-columns: 2fr 1fr;
     column-gap: 15px;
+    align-items: baseline;
   }
   &__film {
     min-height: 10vh;

@@ -13,7 +13,6 @@ const warnings = document.querySelector(".js-warning");
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 
-/* let arrayPredefinido = ["OVA", "Special"]; */
 btnSearch.disabled = false;
 
 //***********funciones**********************
@@ -22,7 +21,13 @@ function callFetch() {
   fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch.value}`)
     .then((response) => response.json())
     .then((json) => {
-      filmList = json.data;
+      filmList = json.data.map((item) => {
+        return {
+          id: item.mal_id,
+          title: item.title,
+        };
+      });
+      console.log(filmList);
       notFound();
       renderFilmList();
     })
@@ -32,13 +37,16 @@ function callFetch() {
     });
 }
 
-function renderFilmList() {
+function renderCard(array) {
   let html = "";
   let classSelected = "";
-  let special = "";
 
-  filmList.forEach((item) => {
-    const selected = myMovies.findIndex(
+  array.forEach((item) => {
+    html += `<li class="film-card js-filmCard id=${item.mal_id}
+    <h3> ${item.title}</h3>
+    </li>`;
+
+    /*     const selected = myMovies.findIndex(
       (selected) => item.mal_id === selected.mal_id
     );
     if (selected !== -1) {
@@ -46,49 +54,30 @@ function renderFilmList() {
     } else {
       classSelected = "";
     }
-    /*    if (arrayPredefinido.includes(item.type)) {
-      special = "Historia Esecial";
-    } else {
-      special = "";
-    } */
 
     if (item.images.jpg.image_url === imgWrong) {
       html += `<li class="film-card js-filmCard  ${classSelected}" id=${item.mal_id} title="click para seleccionar">
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
-            /* <p>${item.type}/*  ${special} */</p> */
+   
                 </li>`;
     } else {
       html += `<li class="film-card js-filmCard  ${classSelected} " id=${item.mal_id} title="click para seleccionar">
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
-            /*   <p>${item.type} /* ${special} */</p> */
+         
                   </li>`;
-    }
+    } */
   });
-
-  foundMovies.innerHTML = html;
+  return html;
+}
+function renderFilmList() {
+  foundMovies.innerHTML = renderCard(filmList);
   listenerFilm();
 }
 
 function renderMyMovies() {
-  let html = "";
-
-  myMovies.forEach((item) => {
-    if (item.images.jpg.image_url === imgWrong) {
-      html += `<li class="film-card js-favCard" id=${item.mal_id} title="click para eliminar">
-    <img src="${imgDefault}" />
-            <h3 >${item.title}</h3>
-                </li>`;
-    } else {
-      html += `<li class="film-card js-favCard " id=${item.mal_id} title="click para eliminar">
-      <img src="${item.images.jpg.image_url}" />
-              <h3 >${item.title}</h3>
-              </li>`;
-    }
-  });
-
-  favoriteMovie.innerHTML = html;
+  favoriteMovie.innerHTML = renderCard(myMovies);
   listenerFavorites();
 }
 
@@ -111,7 +100,7 @@ function loadMyFavorites() {
     renderMyMovies();
   }
 }
-
+const removeMsg = () => (warnings.innerHTML = "");
 function validateInput() {
   if (inputSearch.value === "") {
     btnSearch.disabled = true;
@@ -162,7 +151,6 @@ function clearInputSearch() {
   inputSearch.value = "";
 }
 
-const removeMsg = () => (warnings.innerHTML = "");
 // ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();

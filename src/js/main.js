@@ -13,7 +13,6 @@ const warnings = document.querySelector(".js-warning");
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
 
-/* let arrayPredefinido = ["OVA", "Special"]; */
 btnSearch.disabled = false;
 
 //***********funciones**********************
@@ -22,13 +21,13 @@ function callFetch() {
   fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch.value}`)
     .then((response) => response.json())
     .then((json) => {
-      filmList = json.data /* .map((item) => {
+      filmList = json.data.map((item) => {
         return {
           id: item.mal_id,
           title: item.title,
           images: item.images,
         };
-      }) */;
+      });
       notFound();
       renderFilmList();
     })
@@ -41,31 +40,23 @@ function callFetch() {
 function renderFilmList() {
   let html = "";
   let classSelected = "";
-  let special = "";
 
   filmList.forEach((item) => {
-    const selected = myMovies.findIndex(
-      (selected) => item.mal_id === selected.mal_id
-    );
+    const selected = myMovies.findIndex((selected) => item.id === selected.id);
     if (selected !== -1) {
       classSelected = "selected";
     } else {
       classSelected = "";
     }
-    /*    if (arrayPredefinido.includes(item.type)) {
-      special = "Historia Esecial";
-    } else {
-      special = "";
-    } */
 
     if (item.images.jpg.image_url === imgWrong) {
-      html += `<li class="film-card js-filmCard  ${classSelected}" id=${item.mal_id} title="click para seleccionar">
+      html += `<li class="film-card js-filmCard  ${classSelected}" id=${item.id} title="click para seleccionar">
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
            
                 </li>`;
     } else {
-      html += `<li class="film-card js-filmCard  ${classSelected} " id=${item.mal_id} title="click para seleccionar">
+      html += `<li class="film-card js-filmCard  ${classSelected} " id=${item.id} title="click para seleccionar">
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
           
@@ -82,12 +73,12 @@ function renderMyMovies() {
 
   myMovies.forEach((item) => {
     if (item.images.jpg.image_url === imgWrong) {
-      html += `<li class="film-card js-favCard" id=${item.mal_id} title="click para eliminar">
+      html += `<li class="film-card js-favCard" id=${item.id} title="click para eliminar">
     <img src="${imgDefault}" />
             <h3 >${item.title}</h3>
                 </li>`;
     } else {
-      html += `<li class="film-card js-favCard " id=${item.mal_id} title="click para eliminar">
+      html += `<li class="film-card js-favCard " id=${item.id} title="click para eliminar">
       <img src="${item.images.jpg.image_url}" />
               <h3 >${item.title}</h3>
               </li>`;
@@ -118,6 +109,7 @@ function loadMyFavorites() {
     renderMyMovies();
   }
 }
+const removeMsg = () => (warnings.innerHTML = "");
 
 function validateInput() {
   if (inputSearch.value === "") {
@@ -169,7 +161,6 @@ function clearInputSearch() {
   inputSearch.value = "";
 }
 
-const removeMsg = () => (warnings.innerHTML = "");
 // ********funciones manejadoras de eventos********
 function handleClickSearch(ev) {
   ev.preventDefault();
@@ -187,8 +178,8 @@ function handleClickResetInput(ev) {
 
 function handleClickFilm(event) {
   const clickedMovie = parseInt(event.currentTarget.id);
-  const match = filmList.find((item) => item.mal_id === clickedMovie);
-  const select = myMovies.findIndex((item) => item.mal_id === match.mal_id);
+  const match = filmList.find((item) => item.id === clickedMovie);
+  const select = myMovies.findIndex((item) => item.id === match.id);
 
   if (select === -1) {
     myMovies.push(match);
@@ -200,11 +191,9 @@ function handleClickFilm(event) {
 
 function handleClickFavorite(event) {
   const clickedFav = parseInt(event.currentTarget.id);
-  const matchFav = myMovies.findIndex((item) => item.mal_id === clickedFav);
-  /*   const matchSel = selectedCard.findIndex((item) => item.mal_id === matchFav); */
+  const matchFav = myMovies.findIndex((item) => item.id === clickedFav);
 
   myMovies.splice(matchFav, 1);
-  /* selectedCard.splice(matchSel, 1); */
   renderFilmList();
   renderMyMovies();
   saveMyFavorites();

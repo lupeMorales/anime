@@ -12,7 +12,7 @@ const warnings = document.querySelector(".js-warning");
 
 let filmList = []; //array guarda resultado del fetch
 let myMovies = [];
-let selectedCard = [];
+
 /* let arrayPredefinido = ["OVA", "Special"]; */
 btnSearch.disabled = false;
 
@@ -38,7 +38,7 @@ function renderFilmList() {
   let special = "";
 
   filmList.forEach((item) => {
-    const selected = selectedCard.findIndex(
+    const selected = myMovies.findIndex(
       (selected) => item.mal_id === selected.mal_id
     );
     if (selected !== -1) {
@@ -94,22 +94,9 @@ function renderMyMovies() {
 
 function removeMyFavorites() {
   myMovies = [];
-  selectedCard = [];
   favoriteMovie.innerHTML = "";
   renderFilmList();
   saveMyFavorites();
-  saveSelectedCards();
-}
-
-function saveSelectedCards() {
-  localStorage.setItem("selectedCards", JSON.stringify(selectedCard));
-}
-function loadSelectedCars() {
-  const dataLocalStorage = JSON.parse(localStorage.getItem("selectedCards"));
-  if (dataLocalStorage !== null) {
-    selectedCard = dataLocalStorage;
-    renderFilmList();
-  }
 }
 
 function saveMyFavorites() {
@@ -198,21 +185,17 @@ function handleClickFilm(event) {
 
   if (select === -1) {
     myMovies.push(match);
-    selectedCard.push(match);
   }
   renderFilmList();
   renderMyMovies();
   saveMyFavorites();
-  saveSelectedCards();
 }
 
 function handleClickFavorite(event) {
   const clickedFav = parseInt(event.currentTarget.id);
   const matchFav = myMovies.findIndex((item) => item.mal_id === clickedFav);
-  const matchSel = selectedCard.findIndex((item) => item.mal_id === matchFav);
 
   myMovies.splice(matchFav, 1);
-  selectedCard.splice(matchSel, 1);
   renderFilmList();
   renderMyMovies();
 }
@@ -225,4 +208,3 @@ inputSearch.addEventListener("keydown", pressEnter);
 
 //*********on load*************
 loadMyFavorites();
-loadSelectedCars();

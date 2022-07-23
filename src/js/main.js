@@ -22,7 +22,13 @@ function callFetch() {
   fetch(`https://api.jikan.moe/v4/anime?q=${inputSearch.value}`)
     .then((response) => response.json())
     .then((json) => {
-      filmList = json.data;
+      filmList = json.data /* .map((item) => {
+        return {
+          id: item.mal_id,
+          title: item.title,
+          images: item.images,
+        };
+      }) */;
       notFound();
       renderFilmList();
     })

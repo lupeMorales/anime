@@ -14,7 +14,25 @@ La aplicación consta de dos partes:
 - Un campo de texto y un botón para buscar series por su título.
 - un listado de resultados de búsqueda donde aparece el cartel de la serie y el título.
 
-![screenshot](https://github.com/Adalab/modulo-2-evaluacion-final-lupeMorales/blob/main/src/images/view.png?raw=true)
+### Web responsive mobile:
+
+![Mobile](https://github.com/lupeMorales/modulo-2-evaluacion-final-lupeMorales/blob/main/src/images/mobile_view.png?raw=true)
+
+
+### Web responsive desktop:
+
+![Desktop](https://github.com/lupeMorales/modulo-2-evaluacion-final-lupeMorales/blob/main/src/images/desktop_view.png?raw=true)
+
+## Instalación:
+
+Para abrir el proyecto desde tu ordenador no olvides seguir estos pasos:
+
+```
+$ git clone https://github.com/Adalab/modulo-3-evaluacion-final-olguita2412.git
+$ cd ../path/to/the/file
+$npm install
+$npm start
+```
 
 ## Recursos
 

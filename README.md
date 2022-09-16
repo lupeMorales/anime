@@ -1,4 +1,4 @@
-![Anime](https://github.com/Adalab/modulo-2-evaluacion-final-lupeMorales/blob/main/src/images/logo.png?raw=true)
+![Anime](http://lupemorales.github.io/modulo-2-evaluacion-final-lupeMorales/)
 
 # ANIME <span> | </span>  <a href="http://beta.adalab.es/modulo-2-evaluacion-final-lupeMorales/" target="_blank">   Demo </a><span> | </span>
     

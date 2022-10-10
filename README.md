@@ -12,7 +12,7 @@ ANiMe es una aplicación web de búsqueda de series de anime, que nos permite ma
 
 La aplicación consta de dos partes:
 - Un campo de texto y un botón para buscar series por su título.
-- un listado de resultados de búsqueda donde aparece el cartel de la serie y el título.
+- Un listado de resultados de búsqueda donde aparece el cartel de la serie y el título.
 
 ### Web responsive mobile:
 

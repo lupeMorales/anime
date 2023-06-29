@@ -28,7 +28,7 @@ La aplicación consta de dos partes:
 Para abrir el proyecto desde tu ordenador no olvides seguir estos pasos:
 
 ```
-$ git clone https://github.com/Adalab/modulo-3-evaluacion-final-olguita2412.git
+$ git clone https://github.com/lupeMorales/anime
 $ cd ../path/to/the/file
 $npm install
 $npm start
